@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Makeup Artistry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>[Your Name]</h1>
+        <p>Makeup Artist & Stylist</p>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Book Me</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="portfolio-carousel">
+            <h2 class="section-title">The Portfolio</h2>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="carousel-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+
+                <div class="carousel-slides" id="carouselSlides"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 [Your Name] Makeup Artistry. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Your exact files from the screenshot 
+        // You can change the 'caption' text below to label each specific look!
+        const myPhotos = [
+            { filename: 'IMG_1057.jpeg', caption: 'Portfolio Look 1' },
+            { filename: 'IMG_1422.jpeg', caption: 'Portfolio Look 2' },
+            { filename: 'IMG_1426.jpeg', caption: 'Portfolio Look 3' },
+            { filename: 'IMG_1663.jpeg', caption: 'Portfolio Look 4' },
+            { filename: 'IMG_1718.jpeg', caption: 'Portfolio Look 5' },
+            { filename: 'IMG_1736.jpeg', caption: 'Portfolio Look 6' },
+            { filename: 'IMG_2943.jpeg', caption: 'Portfolio Look 7' },
+            { filename: 'IMG_3035.jpeg', caption: 'Portfolio Look 8' },
+            { filename: 'IMG_3503.jpg',  caption: 'Portfolio Look 9' }, // Converted
+            { filename: 'IMG_3953.jpeg', caption: 'Portfolio Look 10' },
+            { filename: 'IMG_3996.jpg',  caption: 'Portfolio Look 11' }, // Converted
+            { filename: 'IMG_4477.jpeg', caption: 'Portfolio Look 12' },
+            { filename: 'IMG_4481.jpeg', caption: 'Portfolio Look 13' },
+            { filename: 'IMG_4486.jpeg', caption: 'Portfolio Look 14' },
+            { filename: 'IMG_4866.jpeg', caption: 'Portfolio Look 15' },
+            { filename: 'IMG_4868.jpeg', caption: 'Portfolio Look 16' },
+            { filename: 'Untitled design.jpeg', caption: 'Portfolio Look 17' }
+        ];
+
+        // This code dynamically injects the images into your slider layout
+        const slidesContainer = document.getElementById('carouselSlides');
+        
+        myPhotos.forEach(photo => {
+            const slide = document.createElement('div');
+            slide.className = 'carousel-slide';
+            slide.innerHTML = `
+                <img src="images/${photo.filename}" alt="${photo.caption}">
+                <div class="carousel-caption">${photo.caption}</div>
+            `;
+            slidesContainer.appendChild(slide);
+        });
+
+        // Carousel Sliding Mechanism
+        let currentSlide = 0;
+        const totalSlides = myPhotos.length;
+
+        function moveSlide(direction) {
+            currentSlide += direction;
+
+            if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            } else if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            }
+
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+    </script>
+
+</body>
+</html>

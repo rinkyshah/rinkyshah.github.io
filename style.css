@@ -1,0 +1,255 @@
+:root {
+    --bg-color: #faf7f5;
+    --text-color: #2b2927;
+    --accent-color: #d4b2a7;
+    --card-bg: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', 'Didot', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+/* --- THE SPLIT SCREEN LAYOUT --- */
+.container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Left Column: Fixed Information Panel */
+.left-panel {
+    width: 40%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content cleanly down the panel */
+    background-color: var(--bg-color);
+    position: fixed; /* Keeps info static while user interacts with photos */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto; /* Adds an individual scroll if your bio/form is long */
+}
+
+/* Right Column: Portfolio Display Area */
+.right-panel {
+    width: 60%;
+    margin-left: 40%; /* Pushes this panel over so it doesn't hide behind the left panel */
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3eee9; /* Subtle contrast background for photos */
+}
+
+/* --- Left Panel Typography & Headers --- */
+header h1 {
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-style: italic;
+    color: #706a65;
+    font-size: 0.95rem;
+}
+
+.hero {
+    margin: 40px 0;
+}
+
+.hero h2 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* --- Carousel Sizing (Right Side) --- */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 500px; /* Perfectly bounds your vertical photo frame */
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.carousel-slides {
+    display: flex;
+    transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 650px; /* Tall, beautiful portrait cropping */
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 12px;
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+/* Arrows */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+    z-index: 10;
+}
+
+.carousel-btn:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* --- Booking Form --- */
+.contact-form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #eae1dc;
+    background-color: #fafafa;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: var(--text-color);
+    color: #fff;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: var(--accent-color);
+}
+
+footer {
+    font-size: 0.75rem;
+    color: #a09791;
+    margin-top: 30px;
+}
+
+/* --- MOBILE RESPONSIVE RULES --- */
+/* If someone views on a phone, stack it back up into a normal scrolling layout automatically! */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+    .left-panel {
+        width: 100%;
+        position: relative;
+        padding: 30px 20px;
+    }
+    .right-panel {
+        width: 100%;
+        margin-left: 0;
+        padding: 10px 20px 40px 20px;
+    }
+    .carousel-slide img {
+        height: 500px; /* Slightly shorter frame for phone viewports */
+    }
+}
+
+/* --- THE SPLIT SCREEN SYSTEM --- */
+.container {
+    display: flex;       /* Forces the panels to sit side-by-side */
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Left Column: Fixed Info Panel */
+.left-panel {
+    width: 40%;          /* Takes up 40% of the screen width */
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    background-color: var(--bg-color);
+    position: fixed;     /* Locks it to the left side */
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+/* Right Column: Portfolio Area */
+.right-panel {
+    width: 60%;          /* Takes up 60% of the screen width */
+    margin-left: 40%;    /* Explicitly pushes it right so it doesn't hide under the left panel */
+    min-height: 100vh;
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3eee9; 
+}
